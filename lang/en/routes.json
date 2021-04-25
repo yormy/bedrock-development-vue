@@ -1,0 +1,29 @@
+{
+    "index": {
+        "title": "Routes Overzicht"
+    },
+    "field": {
+        "url": {
+            "label": "URL"
+        },
+        "methods": {
+            "label": "Methods"
+        },
+        "middleware": {
+            "label": "Middleware"
+        },
+        "name": {
+            "label": "Name"
+        },
+        "controller": {
+            "label": "Controller"
+        },
+        "prefix": {
+            "label": "Prefix"
+        },
+        "has_permissions": {
+            "label": "Has Permissions"
+        }
+    },
+    "without_permissions": "Without Permissions"
+}

@@ -1,6 +1,6 @@
 <template>
   <v-card class="datatable">
-    <datatable-header :title="$t('routes.index.title')">
+    <datatable-header :title="$t('bedrock-development.routes.index.title')">
       <template v-slot:search>
         <datatable-search :search-input.sync="searchInput"></datatable-search>
       </template>
@@ -11,7 +11,7 @@
       </template>
 
       <template v-slot:filter_02>
-        <v-checkbox v-model="filterWithoutPermissions" :label="$t('routes.without_permissions')">
+        <v-checkbox v-model="filterWithoutPermissions" :label="$t('bedrock-development.routes.without_permissions')">
         </v-checkbox>
       </template>
     </datatable-header>
@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import { Datatable, DatatableFilter, DatatableHeader, DatatableSearch } from 'bedrock-core-vue';
+import {Datatable, DatatableFilter, DatatableHeader, DatatableSearch} from 'bedrock-core-vue';
 
 export default {
   extends: Datatable,
@@ -223,32 +223,32 @@ export default {
     setHeaders() {
       this.headers = [
         {
-          text: this.$t('routes.field.url.label'),
+          text: this.$t('bedrock-development.routes.field.url.label'),
           value: 'uri',
         },
         {
-          text: this.$t('routes.field.methods.label'),
+          text: this.$t('bedrock-development.routes.field.methods.label'),
           value: 'methods',
         },
         {
-          text: this.$t('routes.field.middleware.label'),
+          text: this.$t('bedrock-development.routes.field.middleware.label'),
           value: 'middleware',
           width: 100,
         },
         {
-          text: this.$t('routes.field.name.label'),
+          text: this.$t('bedrock-development.routes.field.name.label'),
           value: 'name',
         },
         {
-          text: this.$t('routes.field.controller.label'),
+          text: this.$t('bedrock-development.routes.field.controller.label'),
           value: 'controller',
         },
         {
-          text: this.$t('routes.field.prefix.label'),
+          text: this.$t('bedrock-development.routes.field.prefix.label'),
           value: 'prefix',
         },
         {
-          text: this.$t('routes.field.has_permissions.label'),
+          text: this.$t('bedrock-development.routes.field.has_permissions.label'),
           value: 'permission',
         },
         {
