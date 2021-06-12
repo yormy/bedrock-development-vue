@@ -1,17 +1,30 @@
 <template>
   <v-card class="datatable">
     <datatable-header :title="$t('bedrock-development.routes.index.title')">
+
       <template v-slot:search>
-        <datatable-search :search-input.sync="searchInput"></datatable-search>
+        <datatable-search
+          :filter="true"
+          :search-input.sync="searchInput"
+          :show-filters.sync="showFilters"
+        ></datatable-search>
       </template>
 
       <template v-slot:filter_01>
-        <datatable-filter :selected.sync="methodSelected" :options="filterMethods">
+        <datatable-filter
+          :options="filterMethods"
+          :selected.sync="methodSelected"
+          :show="showFilters"
+        >
         </datatable-filter>
       </template>
 
       <template v-slot:filter_02>
-        <v-checkbox v-model="filterWithoutPermissions" :label="$t('bedrock-development.routes.without_permissions')">
+        <v-checkbox
+          v-if="showFilters"
+          v-model="filterWithoutPermissions"
+          :label="$t('bedrock-development.routes.without_permissions')"
+        >
         </v-checkbox>
       </template>
     </datatable-header>
@@ -156,14 +169,14 @@ export default {
 
   data() {
     return {
-      headers: null,
       methodSelected: null,
       filterWithoutPermissions: false,
+      showFilters: false,
     };
   },
 
   created() {
-    this.setHeaders();
+    this.createHeaders();
   },
 
   methods: {
@@ -220,8 +233,10 @@ export default {
       return 'grey';
     },
 
-    setHeaders() {
-      this.headers = [
+    createHeaders() {
+      this.makeSearchable();
+
+      this.headers.push(
         {
           text: this.$t('bedrock-development.routes.field.url.label'),
           value: 'uri',
@@ -250,28 +265,24 @@ export default {
         {
           text: this.$t('bedrock-development.routes.field.has_permissions.label'),
           value: 'permission',
-        },
-        {
-          text: 'd',
-          value: 'dummy',
-          class: 'hidden',
-          width: '1px',
-          align: ' d-none',
-        } /* add dummy column to be able to additional default filtering on status */,
-      ];
+        }
+      );
     },
   },
 };
 </script>
 
 <style scoped>
-/*!* Hard hide the column of the DUMMY data *!*/
-/*::v-deep .v-data-table__wrapper thead tr th:nth-of-type(7) {*/
-/*    display:none;*/
-/*}*/
-/*::v-deep .v-data-table__wrapper tr td:nth-of-type(7) {*/
-/*    display:none;*/
-/*}*/
+/* start hide search support */
+::v-deep .v-data-table__wrapper thead tr th:nth-of-type(2) {
+  display: none;
+}
+
+::v-deep .v-data-table__wrapper tr td:nth-of-type(2) {
+  display: none;
+}
+
+/* end hide search support*/
 
 ::v-deep .v-data-table__wrapper thead tr th.hidden {
   display: none;
